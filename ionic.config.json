@@ -1,5 +1,7 @@
 {
   "name": "eer_manager",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,0 +1,38 @@
+<!-- -->
+<ion-content padding style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;">
+  <div class="login-content">
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <img src="../../assets/icon/splash.jfif" width="100px" height="150px" />
+      </h2>
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start></ion-icon>
+        </ion-label>
+        <ion-input type="email" class="form-control" placeholder="البريد الإلكتروني" style="direction: rtl;"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start></ion-icon>
+        </ion-label>
+        <ion-input type="password" class="form-control" placeholder="كلمة السر " style="direction: rtl;"></ion-input>
+      </ion-item>
+    </form>
+
+    <p text-right ion-text color="secondary" tappable (click)="forgotPass()">
+      <strong>نسيت كلمة السر ؟</strong>
+    </p>
+
+    <div style="text-align:center;">
+      <ion-button color="primary" style="text-align:center;" (click)="login()"> تسجيل الدخول 
+      </ion-button>
+    </div>
+  </div> 
+</ion-content>
