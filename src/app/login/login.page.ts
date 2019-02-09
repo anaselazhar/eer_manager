@@ -36,8 +36,11 @@ export class LoginPage {
           duration: 3000
         });
         toast.present();
-        this.userService.userRole = res;
-        this.userService.userRole = (JSON.parse(res._body)).role;
+        this.userService.data = {
+          userRole: (JSON.parse(res._body)).role,
+          id: (JSON.parse(res._body)).idUser
+        };
+
         this.userService.dismiss();
         this.homePage();
       },

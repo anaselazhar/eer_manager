@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar> <ion-title> EER manager </ion-title> </ion-toolbar>
+</ion-header>
+
+<ion-content
+  padding
+  style="background: url('../../../assets/img/bg.jpg'); direction: rtl !important;"
+>
+  <div style="text-align:center !important;">
+    <ion-button color="primary" (click)="newMessage()">
+      رسالة جديدة
+    </ion-button>
+    <ion-button color="primary" (click)="dashBoardPage()">
+      الرجوع
+    </ion-button>
+  </div>
+  <div *ngFor="let item of messagesDetails">
+    <ion-card class="sender" *ngIf="identifySender(item)">
+      <ion-card-content>
+        <p style="text-decoration: underline">
+          <strong>{{ item.title }}</strong>
+        </p>
+        <p>
+          {{ item.Content }}
+        </p>
+        <p style="font-weight: 0.1em !important; color:grey !important;">
+          {{ item.DateSend }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="reciever" *ngIf="!identifySender(item)">
+      <ion-card-content>
+        <p style="text-decoration: underline">
+          <strong>{{ item.title }}</strong>
+        </p>
+        <p>
+          {{ item.Content }}
+        </p>
+        <p style="font-weight: 0.1em !important; color:grey !important;">
+          {{ item.DateSend }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

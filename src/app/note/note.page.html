@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar> <ion-title> EER manager </ion-title> </ion-toolbar>
+</ion-header>
+
+<ion-content
+  padding
+  style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;"
+>
+  <!--
+    Loop over reports here
+  -->
+  <div [hidden]="messages.length > 0">
+    <ion-card>
+      <ion-card-content>
+        لا يوجد لديكم رسائل
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div style="text-align:center !important;">
+    <ion-button
+      color="primary"
+      (click)="newMessage()"
+    >
+    رسالة جديدة
+    </ion-button>
+    <ion-button
+      color="primary"
+      (click)="dashBoardPage()"
+    >
+      الرجوع
+    </ion-button>
+  </div>
+
+  <ion-card *ngFor="let item of messages">
+    <ion-card-header>
+      <ion-card-subtitle>{{ item.role }}</ion-card-subtitle>
+      <ion-card-title> المستخدم : {{ item.name }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button
+        color="primary"
+        style="float: left"
+        size="small"
+        (click)="details(item)"
+      >
+        إقرأ الرسائل
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

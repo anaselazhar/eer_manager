@@ -6,28 +6,32 @@ import { LoadingController } from '@ionic/angular';
 @Injectable()
 export class UserService {
   private apiUri = 'http://association.qpixel-vertualization.com/api/';
-  public userRole: string = null;
+  public data: any = {};
   isLoading = false;
 
   constructor(private _http: Http, public loadingCtrl: LoadingController) {}
 
   async present() {
     this.isLoading = true;
-    return await this.loadingCtrl.create({
-      duration: 5000,
-    }).then(a => {
-      a.present().then(() => {
-        console.log('presented');
-        if (!this.isLoading) {
-          a.dismiss().then(() => console.log('abort presenting'));
-        }
+    return await this.loadingCtrl
+      .create({
+        duration: 5000
+      })
+      .then(a => {
+        a.present().then(() => {
+          console.log('presented');
+          if (!this.isLoading) {
+            a.dismiss().then(() => console.log('abort presenting'));
+          }
+        });
       });
-    });
   }
 
   async dismiss() {
     this.isLoading = false;
-    return await this.loadingCtrl.dismiss().then(() => console.log('dismissed'));
+    return await this.loadingCtrl
+      .dismiss()
+      .then(() => console.log('dismissed'));
   }
 
   login(credential): Observable<any> {
@@ -42,5 +46,27 @@ export class UserService {
     return this._http.post(this.apiUri + 'user/addUser', principal, {
       headers: headers
     });
+  }
+
+  getAllMessages(idUser: string) {
+    const headers = new Headers({ Accept: 'application/json' });
+    return this._http.post(
+      this.apiUri + 'message/getConversation',
+      { id: idUser },
+      {
+        headers: headers
+      }
+    );
+  }
+
+  getMessagesBySenderAndReceiver(payload: any) {
+    const headers = new Headers({ Accept: 'application/json' });
+    return this._http.post(
+      this.apiUri + 'message/getMessages',
+      payload,
+      {
+        headers: headers
+      }
+    );
   }
 }

@@ -9,9 +9,12 @@ const routes: Routes = [
   { path: 'tent', loadChildren: './tent/tent.module#TentPageModule' },
   { path: 'entreprise', loadChildren: './entreprise/entreprise.module#EntreprisePageModule' },
   { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantPageModule' },
-  { path: 'report', loadChildren: './report/report.module#ReportPageModule' },
+  { path: 'workProgress', loadChildren: './workProgress/work-progress.module#WorkProgressPageModule' },
   { path: 'myPage', loadChildren: './myPage/my-page.module#MyPageModule' },
+  { path: 'report', loadChildren: './report/report.module#ReportPageModule' },
   { path: 'report-details/:id', loadChildren: './report/report-details/report-details.module#ReportDetailsPageModule' },
+  { path: 'note', loadChildren: './note/note.module#NotePageModule' },
+  { path: 'note-details/:idUser/:idRec', loadChildren: './note/note-details/note-details.module#NoteDetailsPageModule' },
   { path: '**', redirectTo: 'auth'}
 ];
 
