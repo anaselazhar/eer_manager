@@ -3,27 +3,23 @@ import { NavController, ToastController } from '@ionic/angular';
 import { UserService } from '../providers/user-service';
 
 @Component({
-  selector: 'app-tent',
-  templateUrl: 'tent.page.html',
-  styleUrls: ['tent.page.scss'],
+  selector: 'app-entreprise',
+  templateUrl: 'entreprise.page.html',
+  styleUrls: ['entreprise.page.scss'],
 })
-export class TentPage {
-  tent: any = {};
+export class EntreprisePage {
+  entreprise: any = {};
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
     public userService: UserService
   ) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserSignup');
-  }
-
   dashBoardPage() {
     this.navCtrl.navigateForward('myPage');
   }
 
-  addTent() {
+  addEntreprise() {
 
   }
 }

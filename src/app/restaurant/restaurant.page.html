@@ -17,10 +17,24 @@
       </ion-label>
       <ion-input
         type="text"
-        name="id"
-        [(ngModel)]="tent.id"
+        name="name"
+        [(ngModel)]="restaurant.name"
         class="form-control"
-        placeholder="رقم الخيمة"
+        placeholder="إسم المطعم"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="call" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="phone"
+        [(ngModel)]="restaurant.phone"
+        class="form-control"
+        placeholder="رقم الهاتف"
         style="direction: rtl;"
       ></ion-input>
     </ion-item>
@@ -32,23 +46,9 @@
       <ion-input
         type="text"
         name="location"
-        [(ngModel)]="tent.location"
+        [(ngModel)]="restaurant.location"
         class="form-control"
-        placeholder="موقع الخيمة"
-        style="direction: rtl;"
-      ></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>
-        <ion-icon name="menu" item-start></ion-icon>
-      </ion-label>
-      <ion-input
-        type="number"
-        name="fastingNumber"
-        [(ngModel)]="tent.fastingNumber"
-        class="form-control"
-        placeholder="عدد الصائمين"
+        placeholder="موقع المطعم"
         style="direction: rtl;"
       ></ion-input>
     </ion-item>
@@ -60,18 +60,19 @@
       <ion-input
         type="file"
         name="file"
-        [(ngModel)]="tent.file"
+        [(ngModel)]="restaurant.file"
         class="form-control"
         placeholder="مستندات"
         style="direction: rtl;"
       ></ion-input>
     </ion-item>
+
     <div style="text-align:center !important;">
       <ion-button
         color="primary"
         style="margin-top: 30px !important;"
         [disabled]="!questionForm.form.valid"
-        (click)="addTent()"
+        (click)="addEntreprise()"
       >
         تسجيل
       </ion-button>

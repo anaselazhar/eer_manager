@@ -17,38 +17,24 @@
       </ion-label>
       <ion-input
         type="text"
-        name="id"
-        [(ngModel)]="tent.id"
+        name="name"
+        [(ngModel)]="entreprise.name"
         class="form-control"
-        placeholder="رقم الخيمة"
+        placeholder="إسم الشركة"
         style="direction: rtl;"
       ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>
-        <ion-icon name="pin" item-start></ion-icon>
+        <ion-icon name="call" item-start></ion-icon>
       </ion-label>
       <ion-input
         type="text"
-        name="location"
-        [(ngModel)]="tent.location"
+        name="phone"
+        [(ngModel)]="entreprise.phone"
         class="form-control"
-        placeholder="موقع الخيمة"
-        style="direction: rtl;"
-      ></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>
-        <ion-icon name="menu" item-start></ion-icon>
-      </ion-label>
-      <ion-input
-        type="number"
-        name="fastingNumber"
-        [(ngModel)]="tent.fastingNumber"
-        class="form-control"
-        placeholder="عدد الصائمين"
+        placeholder="رقم الهاتف"
         style="direction: rtl;"
       ></ion-input>
     </ion-item>
@@ -60,18 +46,19 @@
       <ion-input
         type="file"
         name="file"
-        [(ngModel)]="tent.file"
+        [(ngModel)]="entreprise.file"
         class="form-control"
         placeholder="مستندات"
         style="direction: rtl;"
       ></ion-input>
     </ion-item>
+
     <div style="text-align:center !important;">
       <ion-button
         color="primary"
         style="margin-top: 30px !important;"
         [disabled]="!questionForm.form.valid"
-        (click)="addTent()"
+        (click)="addEntreprise()"
       >
         تسجيل
       </ion-button>
