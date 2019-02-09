@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      EER manager
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  padding
+  style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;"
+>
+  <form #questionForm="ngForm">
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="journal" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="fullName"
+        [(ngModel)]="principal.name"
+        class="form-control"
+        placeholder="الإسم الكامل"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="mail" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="email"
+        name="email"
+        [(ngModel)]="principal.email"
+        class="form-control"
+        placeholder="البريد الإلكتروني"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="call" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="tel"
+        [(ngModel)]="principal.phone"
+        class="form-control"
+        placeholder="الهاتف"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="lock" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="password"
+        [(ngModel)]="principal.password"
+        name="password"
+        class="form-control"
+        placeholder="كلمة السر "
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="lock" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="password"
+        [(ngModel)]="principal.repassword"
+        name="repassword"
+        class="form-control"
+        placeholder="تأكيد كلمة السر"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>المهمة</ion-label>
+      <ion-select
+        name="role"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="principal.role"
+      >
+        <ion-select-option value="director">المدير</ion-select-option>
+        <ion-select-option value="manager">مشرف عام</ion-select-option>
+        <ion-select-option value="supervisor">مشرف خيمة</ion-select-option>
+        <ion-select-option value="aidesup">مشرف مساعد</ion-select-option>
+        <ion-select-option value="inter">عميل</ion-select-option>
+        <ion-select-option value="jure">لجنة الرقابة</ion-select-option>
+        <ion-select-option value="mission">مهمات خاصة</ion-select-option>
+        <ion-select-option value="aidejure"
+          >مساعد لجنة الرقابة</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <div style="text-align:center !important;">
+        <ion-button
+        color="primary"
+        style="margin-top: 30px !important;"
+        [disabled]="
+          !questionForm.form.valid || principal.repassword !== principal.password
+        "
+        (click)="register()"
+      >
+        تسجيل
+      </ion-button>
+      <ion-button
+        color="primary"
+        style="margin-top: 30px !important;"
+        (click)="dashBoardPage()"
+      >
+        الرجوع
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

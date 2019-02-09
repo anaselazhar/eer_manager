@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { LoginPage } from './login.page';
+import { SignUpPage } from './sign-up.page';
 import { UserService } from '../providers/user-service';
 
 @NgModule({
@@ -15,11 +15,11 @@ import { UserService } from '../providers/user-service';
     RouterModule.forChild([
       {
         path: '',
-        component: LoginPage
+        component: SignUpPage
       }
     ])
   ],
   providers: [UserService],
-  declarations: [LoginPage]
+  declarations: [SignUpPage]
 })
-export class LoginPageModule {}
+export class SignUpModule {}
