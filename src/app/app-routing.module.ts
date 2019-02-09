@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'report', loadChildren: './report/report.module#ReportPageModule' },
   { path: 'report-details/:id', loadChildren: './report/report-details/report-details.module#ReportDetailsPageModule' },
   { path: 'note', loadChildren: './note/note.module#NotePageModule' },
+  { path: 'firstForm', loadChildren: './first-form/first-form.module#FirstFormModule' },
   { path: 'note-details/:idUser/:idRec', loadChildren: './note/note-details/note-details.module#NoteDetailsPageModule' },
   { path: '**', redirectTo: 'auth'}
 ];

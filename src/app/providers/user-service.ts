@@ -61,12 +61,37 @@ export class UserService {
 
   getMessagesBySenderAndReceiver(payload: any) {
     const headers = new Headers({ Accept: 'application/json' });
+    return this._http.post(this.apiUri + 'message/getMessages', payload, {
+      headers: headers
+    });
+  }
+
+  getSupervisorByTent(id: any) {
+    const headers = new Headers({ Accept: 'application/json' });
     return this._http.post(
-      this.apiUri + 'message/getMessages',
-      payload,
+      this.apiUri + 'user/getSupervisor',
+      { CampNo: id },
       {
         headers: headers
       }
     );
+  }
+
+  getSupervisorAssistant(id: any) {
+    const headers = new Headers({ Accept: 'application/json' });
+    return this._http.post(
+      this.apiUri + 'user/getAideSupervisor',
+      { CampNo: id },
+      {
+        headers: headers
+      }
+    );
+  }
+
+  getAllTents() {
+    const headers = new Headers({ Accept: 'application/json' });
+    return this._http.get(this.apiUri + 'camp/getAllCamps', {
+      headers: headers
+    });
   }
 }
