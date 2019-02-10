@@ -9,6 +9,7 @@ import { UserService } from '../providers/user-service';
 })
 export class NotePage implements OnInit {
   messages: any[] = [];
+  showDiv = false;
   constructor(
     private navController: NavController,
     public userService: UserService
@@ -21,6 +22,9 @@ export class NotePage implements OnInit {
         .getAllMessages(this.userService.data.id)
         .subscribe((res: any) => {
           this.messages = JSON.parse(res._body);
+          if (this.messages.length === 0) {
+            this.showDiv = true;
+          }
           this.userService.dismiss();
         });
     }

@@ -13,8 +13,7 @@ export class FormsListPage implements OnInit {
 
   ngOnInit(): void {
     console.log(this.userService.data.userRole);
-    this.isManagerOrDirector = this.userService.data.userRole === 'manager'
-    || this.userService.data.userRole === 'president' ? true : false;
+    this.isManagerOrDirector = this.userService.data.userRole === 'manager' ? true : false;
   }
 
   goTo(path: string) {
