@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { UserService } from '../providers/user-service';
 
 @Component({
@@ -19,7 +19,7 @@ export class FirstForm implements OnInit {
 
   isVisible = false;
 
-  constructor(public navCtrl: NavController, public userService: UserService) {}
+  constructor(public navCtrl: NavController, public userService: UserService, public toastCtrl: ToastController) {}
 
   ngOnInit(): void {
     this.userService.present();
@@ -56,8 +56,30 @@ export class FirstForm implements OnInit {
     });
   }
 
-  save() {
-    this.firstForm.assistants = this.assistantsWithData;
-    console.log(this.firstForm);
+  async save() {
+    this.firstForm.aideSupervisor = this.assistantsWithData;
+    this.userService.saveReport(this.firstForm).subscribe(
+      async (res) => {
+        const toast = await this.toastCtrl.create({
+          message: 'Report was saved !',
+          duration: 3000
+        });
+        toast.present();
+        this.userService.dismiss();
+        this.firstForm = {
+          supervisorOfficialDress: false,
+          supervisorNotes: false
+        };
+
+    }, async (err) => {
+      if (err.status === 300) {
+        const toast = await this.toastCtrl.create({
+          message: 'Error',
+          duration: 3000
+        });
+        toast.present();
+        this.userService.dismiss();
+      }
+    });
   }
 }

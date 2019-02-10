@@ -6,19 +6,23 @@
   padding
   style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;"
 >
-  <!--
-    Loop over reports here
-  -->
-  <ion-card>
+  <div *ngFor="let item of reports">
+    <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>خيمة</ion-card-subtitle>
-        <ion-card-title>تقرير1</ion-card-title>
+        <ion-card-subtitle>{{item.supervisor}}</ion-card-subtitle>
+        <ion-card-title>{{item.camp}}</ion-card-title>
       </ion-card-header>
-  
+
       <ion-card-content>
-        كلّما حصد غدرُ "الانقِتَالِيِّين" أرواحا بريئة، يتجدّد التقاطب بين واسِمِي الإسلام بتوفير ظروف الغلوّ والتشدّد التي تمهّد للعنف العمَلي، وبين مُبرّئِي...
-        <ion-button color="primary" style="float: left" size="small" (click)="details(1)"> المزيد </ion-button>
+        <ion-button
+          color="primary"
+          style="float: left"
+          size="small"
+          (click)="details(item.id)"
+        >
+          المزيد
+        </ion-button>
       </ion-card-content>
     </ion-card>
- 
+  </div>
 </ion-content>

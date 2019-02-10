@@ -94,4 +94,15 @@ export class UserService {
       headers: headers
     });
   }
+
+  saveReport(payload) {
+    const headers = new Headers({ Accept: 'application/json' });
+    return this._http.post(
+      this.apiUri + 'ManagerReport/AddManagerReport',
+      payload,
+      {
+        headers: headers
+      }
+    );
+  }
 }

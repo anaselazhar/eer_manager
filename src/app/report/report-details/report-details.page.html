@@ -6,8 +6,31 @@
   padding
   style="background: url('../../../assets/img/bg.jpg'); direction: rtl !important;"
 >
-  <!--
-    report details here (by id)
-  -->
-  {{payload.id}}
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ report.supervisor }}</ion-card-subtitle>
+      <ion-card-title>{{ report.camp }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        الإلتزام بالزي الرسمي :
+        {{ booleanToString(report.supervisorOfficialDress) | toArab }}
+      </p>
+      <p>
+        الإلتزام بتعبئة نماذج التقييم :
+        {{ booleanToString(report.supervisorNotes) | toArab }}
+      </p>
+      <h3>المشرفين المساعدين</h3>
+      <div *ngFor="let assistant of report.assistants">
+        <p>رقم : {{ assistant.Id_Number }}</p>
+        <p>الإسم : {{ assistant.Name_Person }}</p>
+        <p>وقت الحضور : {{ assistant.assistanceDate }}</p>
+        <p>
+          الإلتزام بالزي الرسمي :
+          {{ booleanToString(assistant.assistantOfficialDress) | toArab }}
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

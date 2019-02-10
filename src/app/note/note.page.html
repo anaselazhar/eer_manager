@@ -34,7 +34,7 @@
 
   <ion-card *ngFor="let item of messages">
     <ion-card-header>
-      <ion-card-subtitle>{{ item.role }}</ion-card-subtitle>
+      <ion-card-subtitle>{{ item.role | toArab }}</ion-card-subtitle>
       <ion-card-title> المستخدم : {{ item.name }}</ion-card-title>
     </ion-card-header>
 
