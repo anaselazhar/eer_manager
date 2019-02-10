@@ -16,4 +16,9 @@ export class HomePage implements OnInit {
   goTo(path: string) {
     this.navCtrl.navigateForward(path);
   }
+
+  logout() {
+    this.userService.data = {};
+    this.navCtrl.navigateForward('auth');
+  }
 }

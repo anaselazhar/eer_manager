@@ -45,6 +45,7 @@ export class LoginPage {
         this.homePage();
       },
       async (err) => {
+        console.log(err);
         if (err.status === 300) {
           const toast = await this.toastCtrl.create({
             message: 'Login or Password not valid',
