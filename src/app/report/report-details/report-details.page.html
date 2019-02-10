@@ -8,8 +8,7 @@
 >
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>{{ report.supervisor }}</ion-card-subtitle>
-      <ion-card-title>{{ report.camp }}</ion-card-title>
+      <ion-card-title>{{ report.supervisorName }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -22,7 +21,7 @@
         {{ booleanToString(report.supervisorNotes) | toArab }}
       </p>
       <h3>المشرفين المساعدين</h3>
-      <div *ngFor="let assistant of report.assistants">
+      <div *ngFor="let assistant of report.aideSupervisor">
         <p>رقم : {{ assistant.Id_Number }}</p>
         <p>الإسم : {{ assistant.Name_Person }}</p>
         <p>وقت الحضور : {{ assistant.assistanceDate }}</p>

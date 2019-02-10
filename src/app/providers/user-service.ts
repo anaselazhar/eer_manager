@@ -105,4 +105,25 @@ export class UserService {
       }
     );
   }
+
+  getAllSupervisorReport() {
+    const headers = new Headers({ Accept: 'application/json' });
+    return this._http.get(
+      this.apiUri + 'ManagerReport/getAllSupervisorReport',
+      {
+        headers: headers
+      }
+    );
+  }
+
+  getReportById(id: string) {
+    const headers = new Headers({ Accept: 'application/json' });
+    return this._http.post(
+      this.apiUri + 'ManagerReport/getSuppAideReport',
+      {id: id},
+      {
+        headers: headers
+      }
+    );
+  }
 }

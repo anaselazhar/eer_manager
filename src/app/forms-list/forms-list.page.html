@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      EER manager
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding  style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;">
+  <ion-button color="primary" *ngIf="isManagerOrDirector" expand="block" style="margin-top: 100px;" (click)="goTo('firstForm')">سير العمل للمشرف العام </ion-button>
+  <!-- <ion-button color="primary" expand="block" (click)="goTo('report')">التقارير</ion-button>
+  <ion-button color="primary" expand="block" (click)="goTo('myPage')">صفحتي</ion-button> -->
+  <ion-button color="primary" expand="block" (click)="goTo('workProgress')">رجوع</ion-button>
+</ion-content>

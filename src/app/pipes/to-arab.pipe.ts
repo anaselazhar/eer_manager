@@ -8,22 +8,22 @@ export class ToArabFormat implements PipeTransform {
         return 'نعم';
       case 'false':
         return 'لا';
-
+      case '1':
+        return 'نعم';
+      case '0':
+        return 'لا';
       case 'director':
         return 'المدير';
       case 'manager':
         return 'مشرف عام';
-
       case 'supervisor':
         return 'مشرف خيمة';
       case 'aidesup':
         return 'مشرف مساعد';
-
       case 'supervisor':
         return 'مشرف خيمة';
       case 'aidesup':
         return 'مشرف مساعد';
-
       case 'inter':
         return 'عميل';
       case 'jure':
