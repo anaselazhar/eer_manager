@@ -14,11 +14,11 @@
     <ion-card-content>
       <p>
         الإلتزام بالزي الرسمي :
-        {{ booleanToString(report.supervisorOfficialDress) | toArab }}
+        {{ transform(booleanToString(report.supervisorOfficialDress))}}
       </p>
       <p>
         الإلتزام بتعبئة نماذج التقييم :
-        {{ booleanToString(report.supervisorNotes) | toArab }}
+        {{ transform(booleanToString(report.supervisorNotes))}}
       </p>
       <h3>المشرفين المساعدين</h3>
       <div *ngFor="let assistant of report.aideSupervisor">
@@ -27,7 +27,7 @@
         <p>وقت الحضور : {{ assistant.assistanceDate }}</p>
         <p>
           الإلتزام بالزي الرسمي :
-          {{ booleanToString(assistant.assistantOfficialDress) | toArab }}
+          {{ transform(booleanToString(assistant.assistantOfficialDress))}}
         </p>
       </div>
     </ion-card-content>

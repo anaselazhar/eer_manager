@@ -10,9 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './providers/user-service';
 import { HttpModule } from '@angular/http';
+import { ToArabPipe } from './to-arab.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ToArabPipe],
   entryComponents: [],
   imports: [BrowserModule, HttpModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [

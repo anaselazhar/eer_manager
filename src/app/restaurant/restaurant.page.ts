@@ -20,6 +20,10 @@ export class RestaurantPage {
   }
 
   addRestaurant() {
+    // TODO
+  }
 
+  addEntreprise() {
+    // TODO
   }
 }

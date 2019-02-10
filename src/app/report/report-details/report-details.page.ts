@@ -23,13 +23,47 @@ export class ReportDetailsPage implements OnInit {
   ngOnInit() {
     this.userService.present();
     this.userService.getReportById(this.payload.id).subscribe((res: any) => {
-      this.report = JSON.parse(res._body);
-      console.log(this.report);
+      this.report = JSON.parse(res._body)[0];
       this.userService.dismiss();
     });
   }
 
   booleanToString(input: any) {
     return String(input).toString();
+  }
+
+  transform(value) {
+    switch (value) {
+      case 'true':
+        return 'نعم';
+      case 'false':
+        return 'لا';
+      case '1':
+        return 'نعم';
+      case '0':
+        return 'لا';
+      case 'director':
+        return 'المدير';
+      case 'manager':
+        return 'مشرف عام';
+      case 'supervisor':
+        return 'مشرف خيمة';
+      case 'aidesup':
+        return 'مشرف مساعد';
+      case 'supervisor':
+        return 'مشرف خيمة';
+      case 'aidesup':
+        return 'مشرف مساعد';
+      case 'inter':
+        return 'عميل';
+      case 'jure':
+        return 'لجنة الرقابة';
+      case 'mission':
+        return 'مهمات خاصة';
+      case 'aidejure':
+        return 'مساعد لجنة الرقابة';
+      default:
+        return '';
+    }
   }
 }

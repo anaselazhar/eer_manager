@@ -1,9 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'toArab' })
-export class ToArabFormat implements PipeTransform {
-  public transform(inputShortType: string): string {
-    switch (inputShortType) {
+@Pipe({
+  name: 'toArab'
+})
+export class ToArabPipe implements PipeTransform {
+
+  transform(value: any, args?: any): any {
+    switch (value) {
       case 'true':
         return 'نعم';
       case 'false':
@@ -36,4 +39,5 @@ export class ToArabFormat implements PipeTransform {
         return '';
     }
   }
+
 }

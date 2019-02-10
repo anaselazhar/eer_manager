@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ReportDetailsPage } from './report-details.page';
-import { ToArabFormat } from '../../pipes/to-arab.pipe';
 
 @NgModule({
   imports: [
@@ -19,6 +18,6 @@ import { ToArabFormat } from '../../pipes/to-arab.pipe';
       }
     ])
   ],
-  declarations: [ReportDetailsPage, ToArabFormat]
+  declarations: [ReportDetailsPage]
 })
 export class ReportDetailsPageModule {}

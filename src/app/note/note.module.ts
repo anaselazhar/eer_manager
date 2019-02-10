@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { NotePage } from './note.page';
 import { UserService } from '../providers/user-service';
-import { ToArabFormat } from './../pipes/to-arab.pipe';
 
 @NgModule({
   imports: [
@@ -20,6 +19,6 @@ import { ToArabFormat } from './../pipes/to-arab.pipe';
       }
     ])
   ],
-  declarations: [NotePage, ToArabFormat]
+  declarations: [NotePage]
 })
 export class NotePageModule {}
