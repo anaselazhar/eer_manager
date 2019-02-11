@@ -54,6 +54,38 @@
     </ion-item>
 
     <ion-item>
+      <ion-label>خيمة</ion-label>
+      <ion-select
+        name="tent"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="restaurant.tent"
+      >
+        <div *ngFor="let tent of tents">
+          <ion-select-option value="{{ tent.id }}">{{
+              tent.id
+          }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>لجنة التفتيش</ion-label>
+      <ion-select
+        name="juryInspection"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="restaurant.juryInspection"
+      >
+        <div *ngFor="let item of juryInspections">
+          <ion-select-option value="{{ item.id }}">{{
+              item.name
+          }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-label floating>
         <ion-icon name="archive" item-start></ion-icon>
       </ion-label>

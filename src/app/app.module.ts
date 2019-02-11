@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './providers/user-service';
 import { HttpModule } from '@angular/http';
 import { ToArabPipe } from './to-arab.pipe';
+import { ValueService } from './providers/value-service';
 
 @NgModule({
   declarations: [AppComponent, ToArabPipe],
@@ -20,6 +21,7 @@ import { ToArabPipe } from './to-arab.pipe';
     StatusBar,
     SplashScreen,
     UserService,
+    ValueService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

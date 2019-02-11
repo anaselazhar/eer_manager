@@ -12,6 +12,27 @@
 >
   <form #questionForm="ngForm">
     <ion-item>
+      <ion-label>المهمة</ion-label>
+      <ion-select
+        name="role"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="principal.role"
+      >
+        <ion-select-option value="director">المدير</ion-select-option>
+        <ion-select-option value="manager">مشرف عام</ion-select-option>
+        <ion-select-option value="supervisor">مشرف خيمة</ion-select-option>
+        <ion-select-option value="aidesup">مشرف مساعد</ion-select-option>
+        <ion-select-option value="inter">عميل</ion-select-option>
+        <ion-select-option value="jure">لجنة الرقابة</ion-select-option>
+        <ion-select-option value="mission">مهمات خاصة</ion-select-option>
+        <ion-select-option value="aidejure"
+          >مساعد لجنة الرقابة</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-label floating>
         <ion-icon name="journal" item-start></ion-icon>
       </ion-label>
@@ -21,6 +42,20 @@
         [(ngModel)]="principal.name"
         class="form-control"
         placeholder="الإسم الكامل"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="call" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="tel"
+        [(ngModel)]="principal.phone"
+        class="form-control"
+        placeholder="الهاتف"
         style="direction: rtl;"
       ></ion-input>
     </ion-item>
@@ -39,19 +74,90 @@
       ></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label floating>
-        <ion-icon name="call" item-start></ion-icon>
-      </ion-label>
-      <ion-input
-        type="text"
-        name="tel"
-        [(ngModel)]="principal.phone"
-        class="form-control"
-        placeholder="الهاتف"
-        style="direction: rtl;"
-      ></ion-input>
-    </ion-item>
+    <!--fields for director, manager, mission forms-->
+    <div
+      *ngIf="
+        principal.role &&
+        (principal.role === 'manager' ||
+          principal.role === 'director' ||
+          principal.role === 'mission')
+      "
+    >
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="journal" item-start></ion-icon>
+        </ion-label>
+        <ion-input
+          type="text"
+          name="passportNumber"
+          [(ngModel)]="principal.passportNumber"
+          class="form-control"
+          placeholder="رقم الجواز"
+          style="direction: rtl;"
+        ></ion-input>
+      </ion-item>
+    </div>
+    <!-- end fields for director, manager, mission forms-->
+
+    <!--fields for supervisor-->
+    <div *ngIf="principal.role && principal.role === 'supervisor'">
+      <ion-item>
+        <ion-label>مشرف عام</ion-label>
+        <ion-select
+          name="supervisorManager"
+          okText="تم"
+          cancelText="الغاء"
+          [(ngModel)]="principal.supervisorManager"
+        >
+          <div *ngFor="let manager of managers">
+            <ion-select-option value="{{ manager.id }}">{{
+              manager.name
+            }}</ion-select-option>
+          </div>
+        </ion-select>
+      </ion-item>
+    </div>
+    <!-- end fields for supervisor-->
+
+    <!-- fields for aidesup -->
+    <div *ngIf="principal.role && principal.role === 'aidesup'">
+      <ion-item>
+        <ion-label>مشرف خيمة</ion-label>
+        <ion-select
+          name="supervisorTent"
+          okText="تم"
+          cancelText="الغاء"
+          [(ngModel)]="principal.supervisorTent"
+        >
+          <div *ngFor="let supervisor of supervisors">
+            <ion-select-option value="{{ supervisor.id }}">{{
+              supervisor.name
+            }}</ion-select-option>
+          </div>
+        </ion-select>
+      </ion-item>
+    </div>
+    <!-- end fields for aidesup -->
+
+    <!-- fields for aidejure-->
+    <div *ngIf="principal.role && principal.role === 'aidejure'">
+      <ion-item>
+        <ion-label>مشرف اللجنة</ion-label>
+        <ion-select
+          name="supervisorJury"
+          okText="تم"
+          cancelText="الغاء"
+          [(ngModel)]="principal.supervisorJury"
+        >
+          <div *ngFor="let item of juries">
+            <ion-select-option value="{{item.id}}"
+              >{{item.name}}</ion-select-option
+            >
+          </div>
+        </ion-select>
+      </ion-item>
+    </div>
+    <!-- end fields for aidejure-->
 
     <ion-item>
       <ion-label floating>
@@ -81,33 +187,13 @@
       ></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label>المهمة</ion-label>
-      <ion-select
-        name="role"
-        okText="تم"
-        cancelText="الغاء"
-        [(ngModel)]="principal.role"
-      >
-        <ion-select-option value="director">المدير</ion-select-option>
-        <ion-select-option value="manager">مشرف عام</ion-select-option>
-        <ion-select-option value="supervisor">مشرف خيمة</ion-select-option>
-        <ion-select-option value="aidesup">مشرف مساعد</ion-select-option>
-        <ion-select-option value="inter">عميل</ion-select-option>
-        <ion-select-option value="jure">لجنة الرقابة</ion-select-option>
-        <ion-select-option value="mission">مهمات خاصة</ion-select-option>
-        <ion-select-option value="aidejure"
-          >مساعد لجنة الرقابة</ion-select-option
-        >
-      </ion-select>
-    </ion-item>
-
     <div style="text-align:center !important;">
-        <ion-button
+      <ion-button
         color="primary"
         style="margin-top: 30px !important;"
         [disabled]="
-          !questionForm.form.valid || principal.repassword !== principal.password
+          !questionForm.form.valid ||
+          principal.repassword !== principal.password
         "
         (click)="register()"
       >

@@ -54,6 +54,54 @@
     </ion-item>
 
     <ion-item>
+      <ion-label>مشرف خيمة</ion-label>
+      <ion-select
+        name="supervisorTent"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="tent.supervisorTent"
+      >
+        <div *ngFor="let supervisor of supervisors">
+          <ion-select-option value="{{ supervisor.id }}">{{
+            supervisor.name
+          }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>العميل</ion-label>
+      <ion-select
+        name="inter"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="tent.inter"
+      >
+        <div *ngFor="let item of inters">
+          <ion-select-option value="{{ item.id }}">{{
+            item.name
+          }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>إختر المورد</ion-label>
+      <ion-select
+        name="entreprise"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="tent.entreprise"
+      >
+        <div *ngFor="let item of entreprises">
+          <ion-select-option value="{{ item.id }}">{{
+            item.name
+          }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-label floating>
         <ion-icon name="archive" item-start></ion-icon>
       </ion-label>
