@@ -12,7 +12,8 @@ import {
   jurys_mock,
   entreprises_mock,
   tents_mock,
-  juryIspection_mock
+  juryIspection_mock,
+  aideSup_mock
 } from '../mock/mock-data';
 
 @Injectable()
@@ -85,6 +86,12 @@ export class ValueService {
 
   getAllJuriesInspections() {
     const items = juryIspection_mock;
+    const items$ = of(items);
+    return items$;
+  }
+
+  getAllAideSups() {
+    const items = aideSup_mock;
     const items$ = of(items);
     return items$;
   }

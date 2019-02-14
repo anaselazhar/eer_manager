@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      حضور المشرفين
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  padding
+  style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;"
+>
+  <form #questionForm="ngForm">
+    <ion-item>
+      <ion-label>اليوم</ion-label>
+      <ion-select
+        name="day"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="report.day"
+      >
+        <div *ngFor="let day of daysNumer">
+          <ion-select-option value="{{ day + 1 }}">
+            {{ day + 1 }}</ion-select-option
+          >
+        </div>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>وقت الحضور</ion-label>
+      <ion-datetime
+        name="assistanceDate"
+        [(ngModel)]="report.assistanceDate"
+        display-format="MMM DD, YYYY HH:mm"
+      ></ion-datetime>
+    </ion-item>
+
+    <div class="addAidSup">
+      <ion-item>
+        <ion-label>حضور المشرفين المساعدين</ion-label>
+        <ion-select
+          name="aidSup"
+          okText="تم"
+          cancelText="الغاء"
+          [(ngModel)]="payload.aidSup"
+        >
+          <!--to change as soon as possible-->
+          <div *ngFor="let item of allAideSup">
+            <ion-select-option value="{{ item.id }}">{{
+              item.name
+            }}</ion-select-option>
+          </div>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>وقت الحضور</ion-label>
+        <ion-datetime
+          name="aideSupAssistanceDate"
+          [(ngModel)]="payload.assistanceDate"
+          display-format="MMM DD, YYYY HH:mm"
+        ></ion-datetime>
+      </ion-item>
+      <div style="text-align:center !important;">
+        <ion-button
+          color="primary"
+          style="margin-top: 30px !important;"
+          (click)="goTo('forms-list')"
+        >
+          تسجيل
+        </ion-button>
+      </div>
+    </div>
+
+    <div style="text-align:center !important;">
+      <ion-button
+        color="primary"
+        style="margin-top: 30px !important;"
+        [disabled]="!questionForm.form.valid"
+        (click)="add()"
+      >
+        حفظ
+      </ion-button>
+      <ion-button
+        color="primary"
+        style="margin-top: 30px !important;"
+        (click)="goTo('forms-list')"
+      >
+        الرجوع
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

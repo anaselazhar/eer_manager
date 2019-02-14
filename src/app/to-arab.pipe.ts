@@ -25,8 +25,6 @@ export class ToArabPipe implements PipeTransform {
         return 'مشرف مساعد';
       case 'supervisor':
         return 'مشرف خيمة';
-      case 'aidesup':
-        return 'مشرف مساعد';
       case 'inter':
         return 'عميل';
       case 'jure':

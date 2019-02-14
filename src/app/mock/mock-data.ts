@@ -186,3 +186,30 @@ export const juryIspection_mock = [
     password: 'azerty1234'
   }
 ];
+
+export const aideSup_mock = [
+  {
+    id: '44',
+    name: 'Cristiano Ronaldo',
+    phone: '111111111111111111',
+    email: 'ronaldo@gmail.com',
+    password: 'azerty1234',
+    supervisorTent: '4'
+  },
+  {
+    id: '45',
+    name: 'John snow',
+    phone: '111111111111111111',
+    email: 'snow@gmail.com',
+    password: 'azerty1234',
+    supervisorTent: '4'
+  },
+  {
+    id: '46',
+    name: 'Arya Stark',
+    phone: '111111111111111111',
+    email: 'arya@gmail.com',
+    password: 'azerty1234',
+    supervisorTent: '4'
+  }
+];
