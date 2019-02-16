@@ -10,8 +10,11 @@ import { ValueService } from '../providers/value-service';
 })
 export class FifthFormPage implements OnInit {
   daysNumer: any[] = [];
+  minutes: any[] = [];
   hours: any[] = [];
   report: any = {};
+  restaurants: any[] = [];
+  currentRestaurant: any = {};
   payload: any = {};
 
   constructor(
@@ -25,6 +28,20 @@ export class FifthFormPage implements OnInit {
         this.daysNumer.push('0' + (i + 1).toString());
       } else {
         this.daysNumer.push(i + 1);
+      }
+    }
+    for (let i = 0; i <= 59; i++) {
+      if (i < 10) {
+        this.minutes.push('0' + i.toString());
+      } else {
+        this.minutes.push(i);
+      }
+    }
+    for (let i = 0; i <= 23; i++) {
+      if (i < 10) {
+        this.hours.push('0' + i.toString());
+      } else {
+        this.hours.push(i);
       }
     }
   }

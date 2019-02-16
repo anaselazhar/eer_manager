@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> حالة الخيمة </ion-title>
+    <ion-title>سير العمل للجنة التفتيش على المطاعم</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,6 +9,78 @@
   style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;"
 >
   <form #questionForm="ngForm">
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="journal" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="fullName"
+        [(ngModel)]="report.name"
+        class="form-control"
+        placeholder="الإسم"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="call" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="tel"
+        [(ngModel)]="report.phone"
+        class="form-control"
+        placeholder="الهاتف"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="journal" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="helperName"
+        [(ngModel)]="report.helperName"
+        class="form-control"
+        placeholder="اسم المساعد"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="call" item-start></ion-icon>
+      </ion-label>
+      <ion-input
+        type="text"
+        name="helperPhone"
+        [(ngModel)]="report.helperPhone"
+        class="form-control"
+        placeholder="هاتف المساعد"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>المطعم</ion-label>
+      <ion-select
+        name="restaurantId"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="report.restaurantId"
+      >
+        <div *ngFor="let item of restaurants">
+          <ion-select-option value="{{ item.id }}">
+            {{ item.name }}</ion-select-option
+          >
+        </div>
+      </ion-select>
+    </ion-item>
+
     <ion-item>
       <ion-label>اليوم</ion-label>
       <ion-select
@@ -23,96 +95,440 @@
       </ion-select>
     </ion-item>
 
-    <ion-item style="margin: 50px !important;">
-      <ion-list>
-        <ion-list-header>
-          <ion-label>برودة الخيمة</ion-label>
-        </ion-list-header>
-        <ion-radio-group [(ngModel)]="report.campCold" name="campCold">
-          <ion-item>
-            <ion-label>جيدة</ion-label>
-            <ion-radio value="good"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>مقبولة</ion-label>
-            <ion-radio value="acceptable"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>غير مقبولة</ion-label>
-            <ion-radio value="unacceptable"> </ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </ion-item>
-
-    <ion-item style="margin: 50px !important;">
-      <ion-list>
-        <ion-list-header>
-          <ion-label>نظافة الأرضية</ion-label>
-        </ion-list-header>
-        <ion-radio-group [(ngModel)]="report.floorCleanUp" name="floorCleanUp">
-          <ion-item>
-            <ion-label>جيدة</ion-label>
-            <ion-radio value="good"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>مقبولة</ion-label>
-            <ion-radio value="acceptable"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>غير مقبولة</ion-label>
-            <ion-radio value="unacceptable"> </ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </ion-item>
-
-    <ion-item style="margin: 50px !important;">
-      <ion-list>
-        <ion-list-header>
-          <ion-label>المغاسل</ion-label>
-        </ion-list-header>
-        <ion-radio-group [(ngModel)]="report.washbasins" name="washbasins">
-          <ion-item>
-            <ion-label>جيدة</ion-label>
-            <ion-radio value="good"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>مقبولة</ion-label>
-            <ion-radio value="acceptable"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>غير مقبولة</ion-label>
-            <ion-radio value="unacceptable"> </ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </ion-item>
-
-    <ion-item style="margin: 50px !important;">
-      <ion-list>
-        <ion-list-header>
-          <ion-label>الصابون</ion-label>
-        </ion-list-header>
-        <ion-radio-group [(ngModel)]="report.soap" name="soap">
-          <ion-item>
-            <ion-label>متوفر</ion-label>
-            <ion-radio value="available"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>غير متوفر</ion-label>
-            <ion-radio value="unavailable"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </ion-item>
-
     <ion-item>
+      <ion-label>وقت الحضور</ion-label>
+      <ion-select
+        name="assistanceMinute"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="payload.assistanceMinute"
+      >
+        <div *ngFor="let item of minutes">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
+      </ion-select>
+      :
+      <ion-select
+        name="assistanceHour"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="payload.assistanceHour"
+      >
+        <div *ngFor="let item of hours">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
       <ion-list>
         <ion-list-header>
-          <ion-label>ملاحظات</ion-label>
+          <ion-label>ترخيص البلدية الخاص بالمطبخ.</ion-label>
         </ion-list-header>
-        <ion-textarea [(ngModel)]="report.note" name="note"></ion-textarea>
+        <ion-radio-group
+          [(ngModel)]="report.kitchenMunicipalityLicense"
+          name="kitchenMunicipalityLicense"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>شهادة صحية سارية لكافة العاملين في المطبخ.</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.kitchenWorkersValidHealthCertificate"
+          name="kitchenWorkersValidHealthCertificate"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label
+            >تغطية الشعر وتقليم ونظافة الأظافر للعاملين في المطبخ.</ion-label
+          >
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.kitchenWorkershairCoverTrimCleanNails"
+          name="kitchenWorkershairCoverTrimCleanNails"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label
+            >عدم ارتداء الحلي والخواتم والساعات خلال تجهيز الوجبات</ion-label
+          >
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.jewelsRingsWatchesDuringMealProcessingChecked"
+          name="jewelsRingsWatchesDuringMealProcessingChecked"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label
+            >عدم تناول المأكولات والمشروبات والامتناع عن التدخين في
+            المطبخ.</ion-label
+          >
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.eatDrinkSmokingInKitchenCheck"
+          name="eatDrinkSmokingInKitchenCheck"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label
+            >عدم تواجد أي شخص مصاب بمرض معدي أو جروح أو إسهال.</ion-label
+          >
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.noPersonWithInfectionsDiseaseWoundsDiarrhea"
+          name="noPersonWithInfectionsDiseaseWoundsDiarrhea"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كفاية الاضاءة ونظافة أرضية المطبخ والأدوات</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.lightingCleanKitchenToolsChecked"
+          name="lightingCleanKitchenToolsChecked"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>اللحوم مطهية جيدا خالية من اللون الوردي</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.meatWellCooked"
+          name="meatWellCooked"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label
+            >الدواجن مطهية جيدا خالية من الدماء في أمكان التصاق اللحم
+            بالعظام.</ion-label
+          >
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.chickenWellCooked"
+          name="chickenWellCooked"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label
+            >عبوات الروب والعصائر غير منتفخة وخالية من الثقوب.</ion-label
+          >
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.roastJuicePacksNonBloatedFreeHoles"
+          name="roastJuicePacksNonBloatedFreeHoles"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>نوع الأرز أبو كأس وصالح لأكثر من أربعة أشهر.</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.riceTypeAndValid"
+          name="riceTypeAndValid"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>الدجاج حلال وصلاحيته أكثر من أربعة أشهر</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.chickenIsHalalAndValid"
+          name="chickenIsHalalAndValid"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label
+            >اللحم طازج ذبح الدوحة خالي من الشحم والعظم قدر الامكان</ion-label
+          >
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.meatValidWithoutBone"
+          name="meatValidWithoutBone"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>وزن الدجاج لكل وجبة</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.kitchenWeightForEveryMeal"
+          name="kitchenWeightForEveryMeal"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>وزن اللحم لكل وجبة</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.meatWeightForEveryMeal"
+          name="meatWeightForEveryMeal"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>سعة عبوة العصير 200 مل </ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.juiceBottleSize"
+          name="juiceBottleSize"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>سعة عبوة المياه 350 مل </ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.waterBottleSize"
+          name="waterBottleSize"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>حبات التمر مغلفة ووزنها 25 جرام.</ion-label>
+        </ion-list-header>
+        <ion-radio-group [(ngModel)]="report.dateSize" name="dateSize">
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كفاءة ثلاجات الدجاج واللحوم النيئة</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.fidgePerformance"
+          name="fidgePerformance"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
       </ion-list>
     </ion-item>
 
