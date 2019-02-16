@@ -18,6 +18,8 @@ const routes: Routes = [
   { path: 'firstForm', loadChildren: './first-form/first-form.module#FirstFormModule' },
   { path: 'secondForm', loadChildren: './second-form/second-form.module#SecondFormPageModule' },
   { path: 'thirdForm', loadChildren: './third-form/third-form.module#ThirdFormPageModule' },
+  { path: 'fourthForm', loadChildren: './fourth-form/fourth-form.module#FourthFormPageModule' },
+  { path: 'fifthForm', loadChildren: './fifth-form/fifth-form.module#FifthFormPageModule' },
   { path: 'note-details/:idUser/:idRec', loadChildren: './note/note-details/note-details.module#NoteDetailsPageModule' },
   { path: '**', redirectTo: 'auth'}
 ];

@@ -1,0 +1,420 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>حالة الطعام</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  padding
+  style="background: url('../../assets/img/bg.jpg'); direction: rtl !important;"
+>
+  <form #questionForm="ngForm">
+    <ion-item>
+      <ion-label>اليوم</ion-label>
+      <ion-select
+        name="day"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="report.day"
+      >
+        <div *ngFor="let day of daysNumer">
+          <ion-select-option value="{{ day }}"> {{ day }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>نوع الوجبة</ion-label>
+      <ion-select
+        name="mealType"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="report.mealType"
+      >
+        <ion-select-option value="chicken"> دجاج</ion-select-option>
+        <ion-select-option value="meat">لحم </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>وقت الحضور</ion-label>
+      <ion-select
+        name="assistanceMinute"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="report.assistanceMinute"
+      >
+        <div *ngFor="let item of minutes">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
+      </ion-select>
+      :
+      <ion-select
+        name="assistanceHour"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="report.assistanceHour"
+      >
+        <div *ngFor="let item of hours">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>عدد الوجبات</ion-label>
+      <ion-input
+        type="number"
+        name="mealsNumber"
+        [(ngModel)]="report.mealsNumber"
+        class="form-control"
+        placeholder="عدد الوجبات"
+        style="direction: rtl;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية الأرز</ion-label>
+        </ion-list-header>
+        <ion-radio-group [(ngModel)]="report.riceQuantity" name="riceQuantity">
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة الأرز</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.riceTemperatureDegree"
+          name="riceTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية اللحم/الدجاج</ion-label>
+        </ion-list-header>
+        <ion-radio-group [(ngModel)]="report.meatQuantity" name="meatQuantity">
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة اللحم/الدجاج</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.meatTemperatureDegree"
+          name="meatTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية المياه</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.waterQuantity"
+          name="waterQuantity"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة المياه</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.waterTemperatureDegree"
+          name="waterTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية العصير</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.juiceQuantity"
+          name="juiceQuantity"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة العصير</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.juiceTemperatureDegree"
+          name="juiceTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية اللبن او الزبادي</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.milkOrYogurtQuantity"
+          name="milkOrYogurtQuantity"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة اللبن او الزبادي</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.milkOrYogurtTemperatureDegree"
+          name="milkOrYogurtTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية التمر</ion-label>
+        </ion-list-header>
+        <ion-radio-group [(ngModel)]="report.dateQuantity" name="dateQuantity">
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة التمر</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.dateTemperatureDegree"
+          name="dateTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>نوع المقبلات</ion-label>
+      <ion-select
+        name="dessertType"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="dessertType"
+      >
+        <ion-select-option value="fruit">الفاكهة</ion-select-option>
+        <ion-select-option value="glace">الحلوى</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;" *ngIf="dessertType === 'fruit'">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية الفاكهة</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.fruitQuantity"
+          name="fruitQuantity"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة الفاكهة</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.fruitTemperatureDegree"
+          name="fruitTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item style="margin-right: 50px !important;" *ngIf="dessertType === 'glace'">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>كمية الحلوى</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.glaceQuantity"
+          name="glaceQuantity"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>درجة حرارة الحلوى</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="report.glaceTemperatureDegree"
+          name="glaceTemperatureDegree"
+        >
+          <ion-item>
+            <ion-label>مطابقة</ion-label>
+            <ion-radio value="matching"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>غير مطابقة</ion-label>
+            <ion-radio value="not_matching"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>ملاحظات</ion-label>
+        </ion-list-header>
+        <ion-textarea [(ngModel)]="report.note" name="note"></ion-textarea>
+      </ion-list>
+    </ion-item>
+
+    <!--TODO: Add photos for later -->
+
+    <div style="text-align:center !important;">
+      <ion-button
+        color="primary"
+        style="margin-top: 30px !important;"
+        (click)="add()"
+      >
+        حفظ
+      </ion-button>
+      <ion-button
+        color="primary"
+        style="margin-top: 30px !important;"
+        (click)="goTo('workProgress')"
+      >
+        الرجوع
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
