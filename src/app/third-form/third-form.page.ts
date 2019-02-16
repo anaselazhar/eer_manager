@@ -4,11 +4,11 @@ import { UserService } from '../providers/user-service';
 import { ValueService } from '../providers/value-service';
 
 @Component({
-  selector: 'app-second-form',
-  templateUrl: 'second-form.page.html',
-  styleUrls: ['second-form.page.scss']
+  selector: 'app-third-form',
+  templateUrl: 'third-form.page.html',
+  styleUrls: ['third-form.page.scss']
 })
-export class SecondFormPage implements OnInit {
+export class ThirdFormPage implements OnInit {
   daysNumer: any[] = [];
   minutes: any[] = [];
   hours: any[] = [];
@@ -31,14 +31,14 @@ export class SecondFormPage implements OnInit {
       }
     }
     for (let i = 0; i <= 59; i++) {
-      if (i < 10) {
+      if (i < 9) {
         this.minutes.push('0' + (i).toString());
       } else {
         this.minutes.push(i);
       }
     }
     for (let i = 0; i <= 23; i++) {
-      if (i < 10) {
+      if (i < 9) {
         this.hours.push('0' + (i).toString());
       } else {
         this.hours.push(i);
@@ -59,13 +59,9 @@ export class SecondFormPage implements OnInit {
   add() {
     this.report.aidSups = this.reportAidSups;
     console.log(this.report);
-
-    // clean payload
-    this.report = {};
   }
 
   addAidSupToArray(payload: any) {
     this.reportAidSups.push(payload);
-    this.payload = {};
   }
 }

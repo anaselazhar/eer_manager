@@ -12,83 +12,159 @@
 >
   <form #questionForm="ngForm">
     <ion-item>
-      <ion-label>الخيمة</ion-label>
+      <ion-label>الحضور في الخيمة</ion-label>
       <ion-select
-        name="camp"
+        name="superVisorAssistanceMinute"
         okText="تم"
-        (ionChange)="foo()"
         cancelText="الغاء"
-        [(ngModel)]="firstForm.camp"
-        *ngFor="let item of camps"
+        [(ngModel)]="firstForm.superVisorAssistanceMinute"
       >
-        <ion-select-option value="{{ item.Camp_No }}">{{
-          item.Camp_No
-        }}</ion-select-option>
+        <div *ngFor="let item of minutes">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
+      </ion-select>
+      :
+      <ion-select
+        name="superVisorAssistanceHour"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="firstForm.superVisorAssistanceHour"
+      >
+        <div *ngFor="let item of hours">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
       </ion-select>
     </ion-item>
 
-    <div *ngIf="isVisible">
-      <h3>المشرف العام</h3>
-      <ion-item>
-        <ion-label>المشرف</ion-label>
-        <ion-input
-          type="text"
-          name="supervisor"
-          [(ngModel)]="firstForm.supervisor"
-          class="form-control"
-          placeholder="المشرف"
-          style="direction: rtl;"
-        ></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label>إختر المشرف</ion-label>
+      <ion-select
+        okText="تم"
+        name="supervisorId"
+        (onChange)="foo()"
+        cancelText="الغاء"
+        [(ngModel)]="firstForm.supervisorId"
+      >
+        <div *ngFor="let item of supervisors">
+          <ion-select-option value="{{ item.id }}">
+            {{ item.name }}</ion-select-option
+          >
+        </div>
+      </ion-select>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>الإلتزام بالزي الرسمي</ion-label>
-        <ion-checkbox
-          name="supervisorOfficialDress"
+    <ion-item>
+      <ion-list>
+        <ion-list-header>
+          <ion-label>الإلتزام بالزي الرسمي</ion-label>
+        </ion-list-header>
+        <ion-radio-group
           [(ngModel)]="firstForm.supervisorOfficialDress"
-          class="form-control"
-          [checked]="false"
-          style="direction: rtl;"
-        ></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>الإلتزام بتعبئة نماذج التقييم</ion-label>
-        <ion-checkbox
-          [checked]="false"
-          name="supervisorNotes"
-          [(ngModel)]="firstForm.supervisorNotes"
-          class="form-control"
-          style="direction: rtl;"
-        ></ion-checkbox>
-      </ion-item>
-      <h3>المشرفين المساعدين</h3>
-    </div>
-    <div *ngFor="let item of assistants; let i = index">
-      <ion-card>
-        <ion-card-content>
-          <p style="text-decoration: underline">
-            <strong>{{ item.Name_Person }}</strong>
-          </p>
+          name="supervisorOfficialDress"
+        >
           <ion-item>
-            <ion-label>وقت الحضور</ion-label>
-            <ion-datetime
-              name="assistanceDate_{{ i }}"
-              [(ngModel)]="assistantsWithData[i].assistanceDate"
-              display-format="MMM DD, YYYY HH:mm"
-            ></ion-datetime>
+            <ion-label>نعم</ion-label>
+            <ion-radio value="true"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-label>الإلتزام بالزي الرسمي</ion-label>
-            <ion-checkbox
-              name="assistantOfficialDress_{{ i }}"
-              [(ngModel)]="assistantsWithData[i].assistantOfficialDress"
-              class="form-control"
-              [checked]="false"
-              style="direction: rtl;"
-            ></ion-checkbox>
+            <ion-label>لا</ion-label>
+            <ion-radio value="false"> </ion-radio>
           </ion-item>
-        </ion-card-content>
-      </ion-card>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+    <ion-item>
+      <ion-radio-group
+        [(ngModel)]="firstForm.supervisorNotes"
+        name="supervisorNotes"
+      >
+        <ion-list-header>
+          <ion-label>الإلتزام بتعبئة نماذج التقييم</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>نعم</ion-label>
+          <ion-radio value="true"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>لا</ion-label>
+          <ion-radio value="false"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
+
+    <h3>المشرفين المساعدين</h3>
+
+    <ion-item>
+      <ion-label>إختر المشرف</ion-label>
+      <ion-select
+        okText="تم"
+        name="assistantId"
+        cancelText="الغاء"
+        [(ngModel)]="payload.assistantId"
+      >
+        <div *ngFor="let item of assistants">
+          <ion-select-option value="{{ item.id }}">
+            {{ item.name }}</ion-select-option
+          >
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>وقت الحضور</ion-label>
+      <ion-select
+        name="assistanceMinute"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="payload.assistanceMinute"
+      >
+        <div *ngFor="let item of minutes">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
+      </ion-select>
+      :
+      <ion-select
+        name="assistanceHour"
+        okText="تم"
+        cancelText="الغاء"
+        [(ngModel)]="payload.assistanceHour"
+      >
+        <div *ngFor="let item of hours">
+          <ion-select-option value="{{ item }}"> {{ item }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="margin-top: 15px;">
+      <ion-list>
+        <ion-list-header>
+          <ion-label>الإلتزام بالزي الرسمي</ion-label>
+        </ion-list-header>
+        <ion-radio-group
+          [(ngModel)]="payload.assistantOfficialDress"
+          name="assistantOfficialDress"
+        >
+          <ion-item>
+            <ion-label>نعم</ion-label>
+            <ion-radio value="true"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>لا</ion-label>
+            <ion-radio value="false"> </ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+
+    <div style="text-align:center !important;">
+      <ion-button
+        color="primary"
+        style="margin-top: 30px !important;"
+        (click)="addToPayload(payload)"
+      >
+        تسجيل
+      </ion-button>
     </div>
 
     <div style="text-align:center !important;">
@@ -97,7 +173,7 @@
         style="margin-top: 30px !important;"
         (click)="save()"
       >
-        تسجيل
+        حفظ
       </ion-button>
       <ion-button
         color="primary"
