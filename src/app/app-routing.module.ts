@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'forms-list', loadChildren: './forms-list/forms-list.module#FormsListPageModule' },
   { path: 'firstForm', loadChildren: './first-form/first-form.module#FirstFormModule' },
   { path: 'secondForm', loadChildren: './second-form/second-form.module#SecondFormPageModule' },
+  { path: 'thirdForm', loadChildren: './third-form/third-form.module#ThirdFormPageModule' },
   { path: 'note-details/:idUser/:idRec', loadChildren: './note/note-details/note-details.module#NoteDetailsPageModule' },
   { path: '**', redirectTo: 'auth'}
 ];

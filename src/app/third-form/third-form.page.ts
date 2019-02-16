@@ -10,10 +10,7 @@ import { ValueService } from '../providers/value-service';
 })
 export class ThirdFormPage implements OnInit {
   daysNumer: any[] = [];
-  minutes: any[] = [];
   hours: any[] = [];
-  allAideSup: any[] = [];
-  reportAidSups: any[] = [];
   report: any = {};
   payload: any = {};
 
@@ -30,26 +27,10 @@ export class ThirdFormPage implements OnInit {
         this.daysNumer.push(i + 1);
       }
     }
-    for (let i = 0; i <= 59; i++) {
-      if (i < 9) {
-        this.minutes.push('0' + (i).toString());
-      } else {
-        this.minutes.push(i);
-      }
-    }
-    for (let i = 0; i <= 23; i++) {
-      if (i < 9) {
-        this.hours.push('0' + (i).toString());
-      } else {
-        this.hours.push(i);
-      }
-    }
   }
 
   ngOnInit(): void {
-    this.valueService
-      .getAllAideSups()
-      .subscribe((res: any) => (this.allAideSup = res));
+    // none
   }
 
   goTo(path: string) {
@@ -57,11 +38,6 @@ export class ThirdFormPage implements OnInit {
   }
 
   add() {
-    this.report.aidSups = this.reportAidSups;
     console.log(this.report);
-  }
-
-  addAidSupToArray(payload: any) {
-    this.reportAidSups.push(payload);
   }
 }
